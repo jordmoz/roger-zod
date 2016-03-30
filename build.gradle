@@ -31,6 +31,3 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-run {
-	systemProperty 'java.library.path', '/usr/local/Cellar/mesos/0.28.0/lib'
-}
