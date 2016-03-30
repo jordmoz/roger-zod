@@ -48,14 +48,15 @@ class Zcheduler implements Scheduler {
 					.setValue(UUID.randomUUID().toString()).build();
 
 			// docker parameter info
-			// Protos.Parameter p0 = Protos.Parameter.newBuilder().setKey("--rm").setValue("true").build();
-			// List<Protos.Parameter> parameters = ImmutableList.of(p0);
+			Protos.Parameter p0 = Protos.Parameter.newBuilder().setKey("user").setValue("31337").build();
+			List<Protos.Parameter> parameters = ImmutableList.of(p0);
 
 			// docker image info
 			Protos.ContainerInfo.DockerInfo.Builder dockerInfoBuilder = Protos.ContainerInfo.DockerInfo.newBuilder();
 			dockerInfoBuilder.setImage("ubuntu:latest");
-			// dockerInfoBuilder.addAllParameters(parameters);
+			dockerInfoBuilder.addAllParameters(parameters);
 			dockerInfoBuilder.setNetwork(Protos.ContainerInfo.DockerInfo.Network.BRIDGE);
+
 
 			// container info
 			Protos.ContainerInfo.Builder containerInfoBuilder = Protos.ContainerInfo.newBuilder();
@@ -76,7 +77,9 @@ class Zcheduler implements Scheduler {
 					.setType(Protos.Value.Type.SCALAR)
 					.setScalar(Protos.Value.Scalar.newBuilder().setValue(128)))
 					.setContainer(containerInfoBuilder)
-					.setCommand(Protos.CommandInfo.newBuilder().setShell(false))
+					.setCommand(
+					Protos.CommandInfo.newBuilder().setShell(false)
+					.addArguments("/usr/bin/id"))
 					.build();
 
 			tasks.add(task);
