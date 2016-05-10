@@ -57,7 +57,6 @@ class Zcheduler implements Scheduler {
 			dockerInfoBuilder.addAllParameters(parameters);
 			dockerInfoBuilder.setNetwork(Protos.ContainerInfo.DockerInfo.Network.BRIDGE);
 
-
 			// container info
 			Protos.ContainerInfo.Builder containerInfoBuilder = Protos.ContainerInfo.newBuilder();
 			containerInfoBuilder.setType(Protos.ContainerInfo.Type.DOCKER);
